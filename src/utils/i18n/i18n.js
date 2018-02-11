@@ -7,59 +7,59 @@ import whichBackend from './whichBackend';
 import * as locales from './locales';
 
 function parseLocales() {
-    let locizeLocales = {};
-    Object.keys(locales).forEach(key => {
-        console.log(key);
-        locizeLocales[key] = {
-            translations: locales[key]
-        }
-    });
-    return locizeLocales;
+  let locizeLocales = {};
+  Object.keys(locales).forEach(key => {
+    console.log(key);
+    locizeLocales[key] = {
+      translations: locales[key]
+    }
+  });
+  return locizeLocales;
 }
 
 let options = {
-        fallbackLng: 'en',
-        appendNamespaceToCIMode: true,
-        saveMissing: true,
+  fallbackLng: 'en',
+  appendNamespaceToCIMode: true,
+  saveMissing: true,
 
-        // have a common namespace used around the full app
-        ns: ['translations'],
-        defaultNS: 'translations',
+  // have a common namespace used around the full app
+  ns: ['translations'],
+  defaultNS: 'translations',
 
-        debug: true,
-        keySeparator: '### not used ###', // we use content as keys
+  debug: true,
+  keySeparator: '### not used ###', // we use content as keys
 
-        backend: {
-            apiKey: "e0a3d161-f501-4279-8381-01d3b4cb45d5",
-            projectId: "1342867b-166e-48ec-bda2-11285637dde6",
-            referenceLng: 'en'
-        },
+  backend: {
+    apiKey: "e0a3d161-f501-4279-8381-01d3b4cb45d5",
+    projectId: "1342867b-166e-48ec-bda2-11285637dde6",
+    referenceLng: 'en'
+  },
 
-        //resources: parseLocales(),
+  //resources: parseLocales(),
 
-        interpolation: {
-            escapeValue: false, // not needed for react!!
-            formatSeparator: ',',
-            format: function (value, format, lng) {
-                if (format === 'uppercase') return value.toUpperCase();
-                return value;
-            }
-        },
+  interpolation: {
+    escapeValue: false, // not needed for react!!
+    formatSeparator: ',',
+    format: function (value, format, lng) {
+      if (format === 'uppercase') return value.toUpperCase();
+      return value;
+    }
+  },
 
-        react: {
-            wait: true
-        }
-    };
+  react: {
+    wait: true
+  }
+};
 
 if (whichBackend() === 'memory') {
-    options.resources = parseLocales()
+  options.resources = parseLocales()
 }
 
 i18n
-    .use(LocizeBackend)
-    .use(LocizeEditor)
-    .use(LanguageDetector)
-    .use(reactI18nextModule)
-    .init(options);
+  .use(LocizeBackend)
+  .use(LocizeEditor)
+  .use(LanguageDetector)
+  .use(reactI18nextModule)
+  .init(options);
 
 export default i18n;
