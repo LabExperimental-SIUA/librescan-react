@@ -15,6 +15,9 @@ const getJson = (method, url, body = {}) => {
 };
 
 
-export const projects = () => {
-  return getJson("GET", "/projects");
+export const projects = (projectId) => {
+  const url = projectId? `/projects/${projectId}` : "/projects";
+  return getJson("GET", url);
 };
+
+

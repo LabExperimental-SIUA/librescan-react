@@ -1,5 +1,7 @@
 export default {
-  hello: "Hello in english and more!",
-  "Welcome to LibreScan": "Welcome to LibreScan",
+  "home.projects": "Projects",
+  "home.newProjectHint": "No Projects to show, hit",
+  "home.newProjectHintEnd": "to start a new one",
+  "navbar.language": "Language",
   "new.project": "New Project"
 }

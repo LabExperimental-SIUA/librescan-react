@@ -1,18 +1,15 @@
 import React from 'react';
-import { translate } from 'react-i18next';
-import LanguageSelect from '../language/LanguajeSelect';
+import TranslatedText from '../../utils/i18n/TranslatedText';
 
 class NewProjectForm extends React.Component {
 
   render() {
-    const {t} = this.props;
     return (
       <div>
-        <h1>{t('new.project')}</h1>
-        <LanguageSelect/>
+        <h1><TranslatedText id="new.project"/></h1>
       </div>
     );
   }
 }
 
-export default translate('translations')(NewProjectForm);
+export default NewProjectForm;

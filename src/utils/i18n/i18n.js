@@ -18,7 +18,7 @@ function parseLocales() {
 }
 
 let options = {
-  fallbackLng: 'en',
+  fallbackLng: 'es',
   appendNamespaceToCIMode: true,
   saveMissing: true,
 

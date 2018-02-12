@@ -6,8 +6,6 @@ const openProject = (projectId, history) => {
 };
 
 const ProjectItem = withRouter((props) => {
-
-
   return (
     <li
       onClick={() => openProject(props.project.id, props.history)}

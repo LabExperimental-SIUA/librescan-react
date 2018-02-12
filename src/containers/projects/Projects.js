@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchProjects } from "../../actions";
 import NewProjectHint from '../../components/projects/newProjectHint';
 import ProjectList from '../../components/projects/projectList';
-
+import { TranslatedText } from '../../utils/i18n';
 
 class Project extends Component {
 
@@ -21,7 +21,7 @@ class Project extends Component {
     return (
       <div className="container">
         <div className="row">
-          <h2>Projects</h2>
+          <h2><TranslatedText id="home.projects"/></h2>
         </div>
         <ProjectList projects={this.props.projects}/>
       </div>
