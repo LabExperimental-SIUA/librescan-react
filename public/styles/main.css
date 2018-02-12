@@ -1,0 +1,9 @@
+.new-project-hint {
+    color: #5a6268;
+    -webkit-box-shadow: 5px 6px 5px 8px rgba(0,0,0,0.14);
+    -moz-box-shadow: 5px 6px 5px 8px rgba(0,0,0,0.14);
+    box-shadow: 5px 6px 5px 8px rgba(0,0,0,0.14);
+    font-weight: bold;
+    font-size: xx-large;
+    padding: 10px;
+}

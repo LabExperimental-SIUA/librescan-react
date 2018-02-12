@@ -1,22 +1,14 @@
-import React, { Component } from 'react';
-import {Trans, translate} from 'react-i18next';
-import LanguageSelect from '../language/LanguajeSelect';
-import {Link} from 'react-router-dom';
+import React from 'react';
+import { Projects } from '../../containers/projects';
 
-class Home extends Component {
-    render() {
-        return (
-            <div>
-                <h2>
-                    <Trans>
-                        Welcome to LibreScan
-                    </Trans>
-                </h2>
-                <Link to="/projects/new"> New Project </Link>
-                <LanguageSelect/>
-            </div>
-        )
-    };
-}
+const Home = () => {
+  return (
+    <div className="row">
+      <div className="col-sm-12 col-md-12 col-lg-12">
+        <Projects/>
+      </div>
+    </div>
+  );
+};
 
-export default translate('translations')(Home);
+export default Home;
