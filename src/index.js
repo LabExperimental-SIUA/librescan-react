@@ -6,8 +6,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { Home, NewProjectForm } from "./components";
 
-import './utils/i18n/i18n'
-
 import { applicationComponent } from './components/layout';
 
 import { Project } from './containers';

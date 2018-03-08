@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LanguageSelect from '../language/LanguajeSelect';
-import {TranslatedText} from "../../utils/i18n";
+import LanguageSelect from '../language/LanguageSelect';
+import { Translate, I18n } from "react-redux-i18n";
 
 
 const Header = (props) => {
@@ -17,11 +17,13 @@ const Header = (props) => {
           <div className="collapse navbar-collapse" id="navbarButton">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <Link className="nav-link" to="/projects/new"><TranslatedText id="new.project"/> <span className="sr-only">(current)</span></Link>
+                <Link className="nav-link" to="/projects/new"><Translate value="application.new" entity={I18n.t('entities.project')}/>
+                  <span className="sr-only">(current)</span>
+                </Link>
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="javascript:void(0);" id="language-dropdown" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false"><TranslatedText id="navbar.language"/></a>
+                   aria-haspopup="true" aria-expanded="false"><Translate value="navbar.language"/></a>
                 <LanguageSelect/>
               </li>
             </ul>

@@ -1,7 +1,22 @@
 export default {
-  "home.projects": "Proyectos",
-  "home.newProjectHint": "No existen Proyectos todavia, ve a",
-  "home.newProjectHintEnd": "para empezar uno nuevo",
-  "navbar.language": 'Lenguaje',
-  "new.project": "Nuevo Proyecto"
+  home: {
+    projects: "Proyectos",
+    newProjectHint: "No existen Proyectos todavia, ve a",
+    newProjectHintEnd: "para empezar uno nuevo"
+  },
+  navbar: {
+    language: "Lenguaje"
+  },
+  application: {
+    new: "Nuevo %{entity}"
+  },
+  entities: {
+    project: "Proyecto",
+    projects: "Projectos"
+  },
+  languages: {
+    spanish: "Español",
+    english: "English"
+  }
 }
+

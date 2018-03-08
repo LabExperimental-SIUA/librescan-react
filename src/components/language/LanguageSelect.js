@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { connect } from 'react-redux';
+import { I18n, setLocale } from 'react-redux-i18n';
 
 class LanguageSelect extends Component {
 
@@ -10,14 +11,13 @@ class LanguageSelect extends Component {
   }
 
   componentDidMount() {
-    this.setState({language: this.props.i18n.language})
+    this.setState({language: this.props.i18n.locale})
   }
 
   changeLanguage(event) {
-
     const language = event.target.attributes.value.value;
-    this.props.i18n.changeLanguage(language);
-    this.setState({language})
+    this.setState({language});
+    this.props.setLocale(language)
   }
 
   render() {
@@ -29,7 +29,7 @@ class LanguageSelect extends Component {
           value="es"
           href="javascript:void(0)"
         >
-          Español
+          {I18n.t('languages.spanish')}
         </a>
         <a
           onClick={this.changeLanguage}
@@ -37,11 +37,23 @@ class LanguageSelect extends Component {
           value="en"
           href="javascript:void(0)"
         >
-          English
+          {I18n.t('languages.english')}
         </a>
       </div>
     )
   };
 }
 
-export default translate('translations')(LanguageSelect);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setLocale() {
+      dispatch(setLocale(...arguments))
+    }
+  }
+};
+
+const mapStateToProps = ({i18n}) => {
+  return {i18n}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LanguageSelect);
