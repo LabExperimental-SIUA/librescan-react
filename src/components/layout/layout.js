@@ -6,9 +6,9 @@ export default (ComposedComponent) => {
   class ApplicationComponent extends Component {
     render() {
       return (
-        <div>
+        <div className="main-layout">
           <Header title={this.props.title}/>
-          <div className="application-component container-fluid" style={{marginTop: '50px'}}>
+          <div className="application-component container-fluid">
             <ComposedComponent {...this.props} />
           </div>
         </div>

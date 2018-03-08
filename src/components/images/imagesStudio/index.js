@@ -1,0 +1,1 @@
+export { default as ImagesStudio } from './imagesStudio';
