@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { css } from 'aphrodite';
+import ResponsiveSidebar from 'react-sidebar';
 import { ImageList, ImagesStudio, ProjectPreferences } from "../../components";
 
 import {
@@ -9,17 +10,33 @@ import {
   fetchImages,
   createImages,
   updateThumbnailsView,
-  updateViewVisibility
+  updateViewVisibility,
+  updateActiveImages
 } from '../../actions';
 
-import styles from './projects.styles';
+import styles, { sidebarStyles } from './projects.styles';
 
+const mql = window.matchMedia(`(min-width: 800px)`);
 
 class Project extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {projectId: ""};
+    this.state = {
+      projectId: "",
+      mql: mql,
+      docked: props.docked,
+      open: props.open
+    };
+  }
+
+  componentWillMount() {
+    mql.addListener(this.mediaQueryChanged);
+    this.setState({mql: mql, sidebarDocked: mql.matches});
+  }
+
+  componentWillUnmount() {
+    this.state.mql.removeListener(this.mediaQueryChanged);
   }
 
   componentDidMount() {
@@ -32,18 +49,41 @@ class Project extends Component {
     }
   }
 
+  onSetSidebarOpen = (open) => {
+    this.setState({sidebarOpen: open});
+  };
+
+  mediaQueryChanged = () => {
+    this.setState({sidebarDocked: this.state.mql.matches});
+  };
+
   render() {
+    const imageList = <ImageList
+        onItemClick={this.props.updateActiveImages}
+        images={this.props.images}
+        thumbnailProps={this.props.views.thumbnails}
+    />;
+
     return (
       <div className={css(styles.container)}>
-        <ImageList images={this.props.images} thumbnailProps={this.props.views.thumbnails}/>
-        <section className={css(styles.imagesStudioContainer)}>
-          <ProjectPreferences
-            views={this.props.views}
-            updateViewVisibility={this.props.updateViewVisibility}
-            updateThumbnailsView={this.props.updateThumbnailsView}
-          />
-          <ImagesStudio onClick={this.props.createImages.bind(null, this.state.projectId)}/>
-        </section>
+        <ResponsiveSidebar sidebar={imageList}
+                           styles={{...sidebarStyles}}
+                           open={this.state.sidebarOpen}
+                           docked={this.state.sidebarDocked}
+                           onSetOpen={this.onSetSidebarOpen}>
+          <section className={css(styles.imagesStudioContainer)}>
+            <ProjectPreferences
+              views={this.props.views}
+              updateViewVisibility={this.props.updateViewVisibility}
+              updateThumbnailsView={this.props.updateThumbnailsView}
+            />
+            <ImagesStudio
+              studioViewProps={this.props.views.studio}
+              onClick={this.props.createImages.bind(null, this.state.projectId)}
+              images={this.props.images}
+            />
+          </section>
+        </ResponsiveSidebar>
       </div>
     );
   }
@@ -68,6 +108,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateThumbnailsView() {
       dispatch(updateThumbnailsView(...arguments))
+    },
+    updateActiveImages() {
+      dispatch(updateActiveImages(...arguments))
     }
   };
 };
@@ -77,4 +120,3 @@ const mapStateToProps = ({images, views}) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Project);
-

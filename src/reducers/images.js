@@ -4,17 +4,20 @@ const defaultState = {content:{}, order:[], active:[]};
 
 export default (state=defaultState, action) => {
   switch (action.type) {
+    case actions.UPDATE_ACTIVE_IMAGES:
+      return {...state, active: action.images};
     case actions.UPDATE_IMAGES:
-      return addImagesToState(defaultState, action.images);
+      return addImagesToState(defaultState, action.images, action.active);
     case actions.ADD_IMAGES:
-      return addImagesToState(state, action.images);
+      const active = action.images.map(image => image.id);
+      return addImagesToState(state, action.images, active);
     default:
       return state;
   }
 }
 
-const addImagesToState = (state, images) => {
-  return images.reduce((result, image) => {
+const addImagesToState = (state, images, active=[]) => {
+  let newState = images.reduce((result, image) => {
     return ({
       ...result,
       content: {
@@ -24,8 +27,12 @@ const addImagesToState = (state, images) => {
       order: [
         ...result.order,
         image.id
-      ],
-      active: [...result.active]
+      ]
     });
   }, state);
+
+  return {
+    ...newState,
+    active: [...active]
+  }
 };

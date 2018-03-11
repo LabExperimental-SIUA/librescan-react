@@ -10,6 +10,10 @@ const initialState = {
   },
   preferences: {
     show: false
+  },
+  studio: {
+    width: 400,
+    height: 400,
   }
 };
 

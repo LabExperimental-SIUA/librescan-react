@@ -1,0 +1,1 @@
+export const HTML_NON_BREAKING_SPACE_ENTITY = "\u00a0"; // &nbsp;
