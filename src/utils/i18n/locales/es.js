@@ -1,6 +1,6 @@
 export default {
   home: {
-    projects: "Proyectos",
+    content: "Proyectos",
     newProjectHint: "No existen Proyectos todavia, ve a",
     newProjectHintEnd: "para empezar uno nuevo"
   },
@@ -12,11 +12,30 @@ export default {
   },
   entities: {
     project: "Proyecto",
-    projects: "Projectos"
+    projects: "Proyectos"
   },
   languages: {
     spanish: "Español",
     english: "English"
+  },
+  components: {
+    images: {
+      imageList: {
+        label: "Imagenes del Proyecto"
+      },
+      imageGroup: {
+        label: "Grupo %{index}"
+      },
+      imageBox: {
+        processing: "Procesando..."
+      },
+      imagesStudio: {
+        label: "Studio",
+        shoot: "Tomar",
+        retake: "Retomar",
+        delete: "Borrar"
+      }
+    }
   }
 }
 

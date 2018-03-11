@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Translate } from 'react-redux-i18n';
 import PreferencesForm from './PreferencesForm';
 import { css } from 'aphrodite';
 import styles from './ProjectPreferences.styles';
+import CogIcon from 'react-icons/lib/fa/cog'
 
 class ProjectPreferences extends Component {
   onButtonShowClick = () => {
@@ -22,7 +22,7 @@ class ProjectPreferences extends Component {
       return (
         <div>
           <button className='btn btn-primary' onClick={this.onButtonShowClick}>
-            <Translate value="preferences.showPreferences"/>
+            <CogIcon/>
           </button>
         </div>
       );

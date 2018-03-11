@@ -8,6 +8,7 @@ export default {
   UPDATE_PROJECT: 'Update single projects',
   UPDATE_ACTIVE_PROJECT: 'Update active project',
   UPDATE_IMAGES: 'Update images',
+  UPDATE_ACTIVE_IMAGES: 'Update active images',
   CREATE_IMAGES: 'Create images',
   ADD_IMAGES: 'Add images',
   UPDATE_VIEW_VISIBILITY: 'Update view visibility',

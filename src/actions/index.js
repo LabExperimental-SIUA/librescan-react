@@ -9,3 +9,4 @@ export { default as createImages } from './createImages';
 export { default as addImages } from './addImages';
 export { default as updateThumbnailsView } from './updateThumbnailsView';
 export { default as updateViewVisibility } from './updateViewVisibility';
+export { default as updateActiveImages } from './updateActiveImages';

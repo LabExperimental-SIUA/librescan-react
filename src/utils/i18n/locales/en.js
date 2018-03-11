@@ -16,5 +16,24 @@ export default {
   languages: {
     spanish: "Español",
     english: "English"
+  },
+  components: {
+    images: {
+      imageList: {
+        label: "Project Images"
+      },
+      imageGroup: {
+        label: "Image Group %{index}"
+      },
+      imageBox: {
+        processing: "Processing..."
+      },
+      imagesStudio: {
+        label: "Images Studio",
+        shoot: "Shoot",
+        retake: "Retake",
+        delete: "Delete"
+      }
+    }
   }
 }

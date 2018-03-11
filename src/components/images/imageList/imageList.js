@@ -1,25 +1,52 @@
 import React from 'react';
 import { css } from 'aphrodite';
 import styles from './imageList.styles';
-import { ImageBox } from '../imageBox';
+import { ImageGroup } from '../imageGroup';
+import { Translate } from 'react-redux-i18n';
 
-import { buildThumbnailUrl } from '../../../utils/api';
 
-const renderImages = (images, {width, height}) => {
-  return images.order.map(imageId => {
-    const { id, project_id } = images.content[imageId];
+const imagesToGrops = (images, layout=2) => {
+  return images.order.reduce((result, imageId, index) => {
+    const groupIndex = parseInt(index / layout);
+    if (result.length > groupIndex) {
+      result[groupIndex].push(images.content[imageId]);
+    } else {
+      result.push([images.content[imageId]])
+    }
+    return result;
+  }, []);
+};
+
+
+const renderGroups = (groups, active, thumbnailProps, onClick) => {
+return groups.map((imageGroup, index) => {
+  const key = imageGroup.reduce((key, image) => (key+image.id), "");
     return (
-      <ImageBox source={buildThumbnailUrl(project_id, id, width, height)} key={id}/>
+      <ImageGroup
+        key={key}
+        active={key===active}
+        onClick={onClick}
+        images={imageGroup}
+        thumbnailProps={thumbnailProps}
+        groupIndex={index + 1}
+      />
     );
   });
 };
 
 export default (props) => {
+  const groups = imagesToGrops(props.images, props.layout);
+  const active = props.images.active.reduce((key, imageId) => (key+imageId), "");
   return (
-    <section className={css(styles.imagesSidebar)}>
-      <div className={css(styles.imagesBoxContainer)}>
-        {renderImages(props.images, props.thumbnailProps)}
+    <div className={css(styles.imagesSidebar)}>
+      <div>
+        <h3>
+        <Translate value="components.images.imageList.label"/>
+        </h3>
       </div>
-    </section>
+      <div className={css(styles.imageGroupsContainer)}>
+        {renderGroups(groups, active, props.thumbnailProps, props.onItemClick)}
+      </div>
+    </div>
   );
 }

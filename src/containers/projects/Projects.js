@@ -12,7 +12,7 @@ class Project extends Component {
   }
 
   render() {
-    if (Object.keys(this.props.projects).length <= 0) {
+    if (Object.keys(this.props.content).length <= 0) {
       return (
         <NewProjectHint/>
       );
@@ -23,7 +23,7 @@ class Project extends Component {
         <div className="row">
           <h2><Translate value="entities.projects"/></h2>
         </div>
-        <ProjectList projects={this.props.projects}/>
+        <ProjectList projects={this.props.content}/>
       </div>
     );
   }
@@ -39,7 +39,7 @@ const mapDispatchToProps = (dispatch) => {
 
 
 const mapStateToProps = ({projects}) => {
-  return {projects: projects.projects};
+  return {content: projects.content};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Project);
